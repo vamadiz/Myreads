@@ -8,7 +8,7 @@ import { shelfNames, shelfToList } from './utils';
 
 class BooksApp extends React.Component {
   state = {
-    bookShelf: {
+    shelf_books: {
       read: [],
       currentlyReading: [],
       wantToRead: []
@@ -22,8 +22,7 @@ class BooksApp extends React.Component {
         currentlyReading: [],
         wantToRead: []
       };
-      var i;
-      for(i = 0; i < books.length; ++i)
+      for (var i = 0; i < books.length; ++i)
         shelf_books[books[i].shelf].push(books[i]);
       this.setState({shelf_books});
     });

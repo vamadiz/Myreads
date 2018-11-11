@@ -10,11 +10,9 @@ export const shelfNames = {
 export function shelfToList(shelf_books) {
   const shelfIds = ['read', 'currentlyReading', 'wantToRead'];
   var bookList = [];
-  var i;
-  var j;
-  for(i = 0; i < shelfIds.length; ++i) {
+  for(var i = 0; i < shelfIds.length; ++i) {
     var shelf = shelf_books[shelfIds[i]];
-    for(j = 0; j < shelf.length; ++j)
+    for(var j = 0; j < shelf.length; ++j)
       bookList.push({id: shelf[j].id, shelf: shelf[j].shelf});
   }
   return bookList;
