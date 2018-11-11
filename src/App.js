@@ -48,52 +48,49 @@ class BooksApp extends React.Component {
     }
 
 
+    render() {
+      return (
+        <div className="app">
+          <Route path='/search' render={() => (
+            <SearchScreen
+              moveBook={this.moveBook}
+              shelfList={shelfToList(this.state.shelf_books)}
+              />
+          )}/>
 
-
-
-      render() {
-        return (
-          <div className="app">
-            <Route path='/search' render={() => (
-              <SearchScreen
-                moveBook={this.moveBook}
-                shelfList={shelfToList(this.state.shelf_books)}
-                />
-            )}/>
-
-            <Route exact path='/' render={() => (
-              <div className="list-books">
-                <div className="list-books-title">
-                  <h1>MyReads</h1>
-                </div>
-                <div className="list-books-content">
-                  <div>
-                    {['currentlyReading', 'wantToRead', 'read'].map((shelf_id) => (
-                      <div className="bookshelf"
-                           key={'bs-'+shelf_id}>
-                        <h2 className="bookshelf-title"
-                            key={'h2-'+shelf_id}>
+          <Route exact path='/' render={() => (
+            <div className="list-books">
+              <div className="list-books-title">
+                <h1>MyReads</h1>
+              </div>
+              <div className="list-books-content">
+                <div>
+                  {['currentlyReading', 'wantToRead', 'read'].map((shelf_id) => (
+                    <div className="bookshelf"
+                         key={'bs-'+shelf_id}>
+                      <h2 className="bookshelf-title"
+                          key={'h2-'+shelf_id}>
                           {shelfNames[shelf_id]}
-                        </h2>
-                        <BookShelf
-                          key={shelf_id}
-                          shelfId={shelf_id}
-                          books={this.state.shelf_books[shelf_id]}
-                          moveBook={this.moveBook}
-                          />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="open-search">
-                  <Link to='/search'>Add book</Link>
+                      </h2>
+                      <BookShelf
+                        key={shelf_id}
+                        shelfId={shelf_id}
+                        books={this.state.shelf_books[shelf_id]}
+                        moveBook={this.moveBook}
+                        />
+                    </div>
+                  ))}
                 </div>
               </div>
+              <div className="open-search">
+                <Link to='/search'>Add book</Link>
+              </div>
+            </div>
 
-            )}/>
-          </div>
-        );
-      }
+          )}/>
+        </div>
+      );
+    }
 
 
 
