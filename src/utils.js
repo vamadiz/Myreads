@@ -7,11 +7,11 @@ export const shelfNames = {
   none: 'None'
 };
 
-export function shelfToList(shelf_books) {
+export function shelfToList(bookShelf) {
   const shelfIds = ['read', 'currentlyReading', 'wantToRead'];
   var bookList = [];
   for(var i = 0; i < shelfIds.length; ++i) {
-    var shelf = shelf_books[shelfIds[i]];
+    var shelf = bookShelf[shelfIds[i]];
     for(var j = 0; j < shelf.length; ++j)
       bookList.push({id: shelf[j].id, shelf: shelf[j].shelf});
   }

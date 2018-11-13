@@ -3,12 +3,12 @@ import * as BooksAPI from './BooksAPI';
 import './App.css';
 import { Route, Link } from 'react-router-dom';
 import BookShelf from './BookShelf';
-import SearchScreen from './SearchScreen';
+import Search from './Search';
 import { shelfNames, shelfToList } from './utils';
 
 class BooksApp extends React.Component {
   state = {
-    shelf_books: {
+    bookShelf: {
       read: [],
       currentlyReading: [],
       wantToRead: []
@@ -17,14 +17,14 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      var shelf_books = {
+      var bookShelf = {
         read: [],
         currentlyReading: [],
         wantToRead: []
       };
-      for (var i = 0; i < books.length; ++i)
-        shelf_books[books[i].shelf].push(books[i]);
-      this.setState({shelf_books});
+      for(var i = 0; i < books.length; ++i)
+        bookShelf[books[i].shelf].push(books[i]);
+      this.setState({bookShelf});
     });
   }
 
@@ -34,14 +34,14 @@ class BooksApp extends React.Component {
     BooksAPI.update(book, dst)
       .then(() => {
         this.setState((state) => {
-          var shelf_books = state.shelf_books;
-          if(src in this.state.shelf_books)
-            shelf_books[src] = shelf_books[src].filter((b) => b.id !== book.id);
+          var bookShelf = state.bookShelf;
+          if(src in this.state.bookShelf)
+            bookShelf[src] = bookShelf[src].filter((b) => b.id !== book.id);
           if(dst !== 'none') {
             book.shelf = dst;
-            shelf_books[dst].push(book);
+            bookShelf[dst].push(book);
           }
-          return {shelf_books};
+          return {bookShelf};
         });
       });
     }
@@ -51,9 +51,9 @@ class BooksApp extends React.Component {
       return (
         <div className="app">
           <Route path='/search' render={() => (
-            <SearchScreen
+            <Search
               moveBook={this.moveBook}
-              shelfList={shelfToList(this.state.shelf_books)}
+              shelfList={shelfToList(this.state.bookShelf)}
               />
           )}/>
 
@@ -74,7 +74,7 @@ class BooksApp extends React.Component {
                       <BookShelf
                         key={shelf_id}
                         shelfId={shelf_id}
-                        books={this.state.shelf_books[shelf_id]}
+                        books={this.state.bookShelf[shelf_id]}
                         moveBook={this.moveBook}
                         />
                     </div>

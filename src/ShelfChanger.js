@@ -11,20 +11,34 @@ class ShelfChanger extends Component {
     moveBook: PropTypes.func.isRequired
   }
 
+  //updateBook = event =>
+  //  this.props.moveBook(this.props.book, this.props.shelf, event.target.value)
+
   render() {
     const opts = ['read', 'currentlyReading', 'wantToRead', 'none'];
-    var shelf = this.props.shelf !== 'search-shelf' ? this.props.shelf : 'none';
+    const { book, shelf, moveBook } = this.props;
+    //let currentBook = 'none';
+
+    /*for (let item of shelf) {
+      if (item.id === book.id) {
+        currentBook = item.shelf;
+        break;
+      }
+    }*/
+    //const book = this.props.book;
+    //var shelf = this.props.shelf !== 'search-shelf' ? this.props.shelf : 'none';
 
     return (
       <div className="book-shelf-changer">
         <select
+          //onChange={this.updateBook}
           defaultValue={shelf}
           onChange={(event) => {
             const { book, shelf, moveBook } = this.props;
             var target = event.target.value;
             moveBook(book, shelf, target);
           }}>
-          <option value="disabled" disabled>Move to...</option>
+          <option value="none" disabled>Move to...</option>
           {opts.map((opt) => (
             <option
               key={opt}
