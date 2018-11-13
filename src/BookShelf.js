@@ -9,12 +9,12 @@ class BookShelf extends Component {
   static propTypes = {
     shelfId: PropTypes.string.isRequired,
     books: PropTypes.array.isRequired,
-    moveBook: PropTypes.func.isRequired,
+    changeBook: PropTypes.func.isRequired,
     shelfList: PropTypes.array
   }
 
   render () {
-    const { books, moveBook, shelfList } = this.props;
+    const { books, changeBook, shelfList } = this.props;
     var { shelfId } = this.props;
     var cn = 'bookshelf-books';
     if(shelfId === 'search-shelf')
@@ -48,7 +48,7 @@ class BookShelf extends Component {
                     <ShelfChanger
                       book={book}
                       shelf={shelf ? shelf : shelfId}
-                      moveBook={moveBook}
+                      changeBook={changeBook}
                       />
                   </div>
                   <div className="book-title">{book.title}</div>

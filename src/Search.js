@@ -8,7 +8,7 @@ import './App.css';
 class Search extends Component {
 
   static propTypes = {
-    moveBook: PropTypes.func.isRequired,
+    changeBook: PropTypes.func.isRequired,
     shelfList: PropTypes.array.isRequired
   }
 
@@ -34,7 +34,7 @@ class Search extends Component {
 
   render() {
     const { searchQuery, searchResults, searchError } = this.state;
-    const { moveBook, shelfList } = this.props;
+    const { changeBook, shelfList } = this.props;
 
     return (
       <div className="search-books">
@@ -61,7 +61,7 @@ class Search extends Component {
                     book={shelfList}
                     books={searchResults}
                     key='search-shelf'
-                    moveBook={moveBook}
+                    changeBook={changeBook}
                     shelfList={shelfList}
                   />
                 ))}
