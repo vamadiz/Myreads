@@ -1,10 +1,10 @@
 import findBy from 'array-find-by';
 
 export const shelfNames = {
+  none: 'None',
   read: 'Read',
   currentlyReading: 'Currently Reading',
-  wantToRead: 'Want To Read',
-  none: 'None'
+  wantToRead: 'Want To Read'
 };
 
 export function shelfToList(bookShelf) {

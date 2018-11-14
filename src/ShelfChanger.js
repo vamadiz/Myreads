@@ -13,7 +13,7 @@ class ShelfChanger extends Component {
 
 
   render() {
-    const opts = ['read', 'currentlyReading', 'wantToRead', 'none'];
+    const opts = ['none', 'read', 'currentlyReading', 'wantToRead'];
     const { book, shelf, changeBook } = this.props;
 
 
