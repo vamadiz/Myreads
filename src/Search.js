@@ -46,32 +46,19 @@ class Search extends Component {
             <input
               type="text"
               placeholder="Search by title or author"
-              value={searchQuery}
+              //value={searchQuery}
               onChange={this.updateQuery}
             />
           </div>
         </div>
-        <div className="search-books-results">
-          {searchResults.length > 0 && (
-            <div>
-              <h3>Search returned {searchResults.length} books </h3>
-              <ol className="books-grid">
-                {searchResults.map(book => (
-                  <BookShelf
-                    book={shelfList}
-                    books={searchResults}
-                    key='search-shelf'
-                    changeBook={changeBook}
-                    shelfList={shelfList}
-                  />
-                ))}
-              </ol>
-            </div>
-          )}
-          {searchError && (
-            <h3>No results found. Please try again!</h3>
-          )}
-        </div>
+        <BookShelf
+          key='search-shelf'
+          shelfId='search-shelf'
+          books={searchResults}
+          changeBook={changeBook}
+          shelfList={shelfList}
+          />
+        
       </div>
     );
   }
